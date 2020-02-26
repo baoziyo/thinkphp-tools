@@ -14,15 +14,15 @@ class UploadTools extends App
         $info = $file->validate([
             'ext' => 'jpg,png,gif,ico',
             'size' => 1024 * 5
-        ])->rule('uniqid')->move(getRootPath() . '/public/icon');
+        ])->rule('uniqid')->move(self::getRootPath() . '/public/icon');
         if ($info) {
             $name = $info->getSaveName();
             try {
-                FileTools::delete(getRootPath() . '/public/favicon.ico');
-                FileTools::copy(getRootPath() . '/public/favicon.ico', getRootPath() . '/public/icon/' . $name, true);
+                FileTools::delete(self::getRootPath() . '/public/favicon.ico');
+                FileTools::copy(self::getRootPath() . '/public/favicon.ico', self::getRootPath() . '/public/icon/' . $name, true);
             } catch (\Exception $exception) {
-                FileTools::delete(getRootPath() . '/public/favicon.ico');
-                FileTools::copy(getRootPath() . '/public/favicon.ico', getRootPath() . '/public/favicon.ico.old');
+                FileTools::delete(self::getRootPath() . '/public/favicon.ico');
+                FileTools::copy(self::getRootPath() . '/public/favicon.ico', self::getRootPath() . '/public/favicon.ico.old');
             }
             die(PromptTools::msg(1, 1, '修改成功!'));
         } else {
