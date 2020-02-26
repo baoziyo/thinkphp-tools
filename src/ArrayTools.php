@@ -110,4 +110,22 @@ class ArrayTools extends App
         }
         return $parent;
     }
+
+    public static function index(array $array, $name)
+    {
+        $indexedArray = array();
+
+        if (empty($array)) {
+            return $indexedArray;
+        }
+
+        foreach ($array as $item) {
+            if (isset($item[$name])) {
+                $indexedArray[$item[$name]] = $item;
+                continue;
+            }
+        }
+
+        return $indexedArray;
+    }
 }
