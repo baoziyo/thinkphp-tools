@@ -18,7 +18,7 @@ class FileTools extends App
             return false;
         }
         if ($path) {
-            $path = getRootPath() . '/config/';
+            $path = self::getRootPath() . '/config/';
         } else {
             $path = env('app_path');
             $module = request()->module();
