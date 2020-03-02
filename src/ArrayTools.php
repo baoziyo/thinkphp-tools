@@ -1,13 +1,16 @@
 <?php
 
 namespace think\tools;
+
 class ArrayTools extends App
 {
     /**
      * 将数组内的某个key提取出来
      * 2019/10/31 By:Baozi
+     *
      * @param $array
      * @param $key
+     *
      * @return array
      */
     public static function column($array, $key)
@@ -16,24 +19,25 @@ class ArrayTools extends App
             return array_column($array, $key);
         }
         if (empty($array)) {
-            return array();
+            return [];
         }
-        $column = array();
+        $column = [];
         foreach ($array as $item) {
             if (isset($item[$key])) {
                 $column[] = $item[$key];
             }
         }
+
         return $column;
     }
 
     /**
      * 判断数组键是否存在
      * 2019/10/31 By:Baozi
-     * @param array $array
-     * @param array $keys
+     *
      * @param bool $strictMode true 严格模式 判断是否为null|''|0
-     * @param bool $tips true 提示某个字段不存在
+     * @param bool $tips       true 提示某个字段不存在
+     *
      * @return array|bool
      */
     public static function requireds(array $array, array $keys, $strictMode = false, $tips = false)
@@ -46,16 +50,19 @@ class ArrayTools extends App
                 return $tips ? [false, $key] : false;
             }
         }
+
         return true;
     }
 
     /**
      * 添加字段 level
      * 2019/10/31 By:Baozi
+     *
      * @param $array
      * @param int $pid
      * @param int $level
      * @param int $toLavel
+     *
      * @return array
      */
     public static function arrayInlevel($array, $pid = 0, $level = 1, $toLavel = 999)
@@ -68,14 +75,17 @@ class ArrayTools extends App
                 self::arrayInlevel($array, $v['id'], $level + 1, $toLavel);
             }
         }
+
         return $list;
     }
 
     /**
      * 子元素计算器
      * 2019/10/31 By:Baozi
+     *
      * @param $array
      * @param $pId
+     *
      * @return array
      */
     public static function childrenCount($array, $pId)
@@ -83,19 +93,22 @@ class ArrayTools extends App
         $counter = [];
         foreach ($array as $item) {
             $count = isset($counter[$item[$pId]]) ? $counter[$item[$pId]] : 0;
-            $count++;
+            ++$count;
             $counter[$item[$pId]] = $count;
         }
+
         return $counter;
     }
 
     /**
      * 把元素插入到对应的父元素$childKeyName字段
      * 2019/10/31 By:Baozi
+     *
      * @param $parent
      * @param $pid
      * @param $child
      * @param $childKeyName
+     *
      * @return mixed
      */
     public static function childAppend($parent, $pid, $child, $childKeyName)
@@ -108,12 +121,13 @@ class ArrayTools extends App
                 $item[$childKeyName][] = $child;
             }
         }
+
         return $parent;
     }
 
     public static function index(array $array, $name)
     {
-        $indexedArray = array();
+        $indexedArray = [];
 
         if (empty($array)) {
             return $indexedArray;
