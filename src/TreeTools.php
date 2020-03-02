@@ -7,15 +7,17 @@ class TreeTools extends App
     /**
      * 生成菜单树
      * 2019/10/31 By:Baozi
+     *
      * @param $array
      * @param string $pidName
      * @param string $childKeyName
+     *
      * @return array|mixed
      */
     public static function menuTree($array, $pidName = 'pId', $childKeyName = 'children')
     {
         $counter = ArrayTools::childrenCount($array, $pidName);
-        if (!isset($counter[0]) || $counter[0] == 0) {
+        if (!isset($counter[0]) || 0 == $counter[0]) {
             return $array;
         }
         $tree = [];
@@ -24,7 +26,7 @@ class TreeTools extends App
             if (isset($counter[$temp['id']]) && $counter[$temp['id']] > 0) {
                 array_push($array, $temp);
             } else {
-                if ($temp[$pidName] == 0) {
+                if (0 == $temp[$pidName]) {
                     $tree[] = $temp;
                 } else {
                     $array = ArrayTools::childAppend($array, $temp[$pidName], $temp, $childKeyName);
@@ -32,6 +34,7 @@ class TreeTools extends App
             }
             $counter = ArrayTools::childrenCount($array, $pidName);
         }
+
         return $tree;
     }
 }

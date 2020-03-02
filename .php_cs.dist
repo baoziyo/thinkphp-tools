@@ -1,0 +1,22 @@
+<?php
+
+$finder = Symfony\Component\Finder\Finder::create()
+    ->files()
+    ->name('*.php')
+    ->ignoreDotFiles(true)
+    ->ignoreVCS(true)
+    ->in(__DIR__.'/src')
+;
+
+return PhpCsFixer\Config::create()
+    ->setCacheFile(__DIR__.'/.php_cs.cache')
+    ->setRules([
+        '@PSR2' => true,
+        '@Symfony' => true,
+        'array_indentation' => true,
+        'blank_line_after_namespace' => true,
+        'phpdoc_summary' => false,
+        'array_syntax' => ['syntax' => 'short'],
+    ])
+    ->setFinder($finder)
+;
