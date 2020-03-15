@@ -27,10 +27,10 @@ class PromptTools extends App
             'msg' => $info,
         ];
         if (!empty($datas)) {
-            return json_encode(array_merge($temporaryArray, ['datas' => $datas]));
+            return json(array_merge($temporaryArray, ['datas' => $datas]));
         }
 
-        return json_encode($temporaryArray);
+        return json($temporaryArray);
     }
 
     /**
@@ -45,7 +45,7 @@ class PromptTools extends App
      */
     public static function datasMsg($code, $count, $data)
     {
-        return json_encode([
+        return json([
             'code' => $code,
             'msg' => '',
             'count' => $count,
