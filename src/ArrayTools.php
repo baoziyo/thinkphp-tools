@@ -142,4 +142,19 @@ class ArrayTools extends App
 
         return $indexedArray;
     }
+
+    public static function removeNull(array $array)
+    {
+        if (empty($array)) {
+            return [];
+        }
+
+        foreach ($array as $key => $value) {
+            if (empty($array[$key]) || '' == $array[$key] || null == $array[$key]) {
+                unset($array[$key]);
+            }
+        }
+
+        return $array;
+    }
 }
