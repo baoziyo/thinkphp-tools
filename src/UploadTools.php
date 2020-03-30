@@ -12,7 +12,7 @@ class UploadTools extends App
     {
         $file = request()->file('file');
         $info = $file->validate([
-            'ext' => 'jpg,png,gif,ico',
+            'ext' => 'jpg,png,gif,ico,jpeg',
             'size' => 1024 * 500,
         ])->rule('uniqid')->move(self::getRootPath().'/public/icon');
         if ($info) {
