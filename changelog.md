@@ -1,3 +1,6 @@
+## v1.0.6 (2020-03-30)
+* 优化：`UploadTools`方法`ico`修改大小
+
 ## v1.0.5 (2020-03-28)
 * 新增：`ArrayTools`方法`removeNull`
 
