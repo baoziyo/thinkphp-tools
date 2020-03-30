@@ -12,8 +12,8 @@ class UploadTools extends App
     {
         $file = request()->file('file');
         $info = $file->validate([
-            'ext' => 'jpg,png,gif,ico',
-            'size' => 1024 * 5,
+            'ext' => 'jpg,png,gif,ico,jpeg',
+            'size' => 1024 * 500,
         ])->rule('uniqid')->move(self::getRootPath().'/public/icon');
         if ($info) {
             $name = $info->getSaveName();
@@ -34,9 +34,10 @@ class UploadTools extends App
     /**
      * 上传单张图片
      *
-     * @param int $width
-     * @param int $height
+     * @param int   $width
+     * @param int   $height
      * @param array $validate
+     *
      * @return false|string
      */
     public static function uploadImg($width = 500, $height = 300, $validate = [])
@@ -56,9 +57,10 @@ class UploadTools extends App
     /**
      * 上传多张图片
      *
-     * @param int $width
-     * @param int $height
+     * @param int   $width
+     * @param int   $height
      * @param array $validate
+     *
      * @return false|string
      */
     public static function uploadImgs($width = 500, $height = 300, $validate = [])
